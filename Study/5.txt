@@ -1,0 +1,20 @@
+alert 알려주는것
+prompt 입력받는것
+confirm 확인받는것
+
+
+
+alert("Hello"); // 알림창에서 Hello 라고 나옴
+
+prompt("안내 메세지"); // 알림창에 안내메세지가 나오면서 무엇을 입력해야하는지 설명
+prompt("안내 메세지", "입력받을 값의 디폴트값"); 으로도 사용가능.
+즉, prompt() 함수에서 두번째 인수는 입력받을 값의 디폴트값.
+
+const name = prompt("이름을 입력하세요.");
+alert("환영합니다, " + name + "님");
+//alert(`환영합니다, " + ${name}님`);
+
+
+
+confirm ("확인받을 메세지"); // true, false 값이 반환 됨.
+

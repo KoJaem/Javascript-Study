@@ -1,0 +1,16 @@
+typeof 연산자
+변수의 자료형을 알아낼 수 있음.
+
+
+// typeof 연산자
+
+const name = "Mike";
+
+console.log(typeof 3); // 출력 값 : number
+console.log(typeof name); // 출력 값 : string
+console.log(typeof true); // 출력 값 : boolean
+console.log(typeof "abc"); // 출력 값 : string
+console.log(typeof null); // 출력 값 : object
+console.log(typeof undefined); // 출력 값 : undefined
+
+

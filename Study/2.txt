@@ -1,0 +1,20 @@
+문자열 " , " 와 ` , ` 의 차이
+
+let name = "Mike";
+age = 30;
+const message1 = "My name is ${name}";
+const message2 = `My name is ${name}`;
+
+console.log(message1);
+console.log(message2);
+
+에서 
+console.log(message1); 는
+"My name is ${name}" 라고 출력되고
+
+console.log(message2); 는
+"My name is Mike" 라고 출력됨.
+
+' 같은 문자는
+
+\' 이런식으로 써주면 됨.
