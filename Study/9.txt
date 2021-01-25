@@ -1,0 +1,93 @@
+함수 작성방법
+
+함수	함수명	매개변수
+function sayHello(name) {
+	console.log(`"Hello, ${name}');
+}
+
+
+예시 (매개변수가 없는 함수)
+
+        function showError(){
+          alert("에러가 발생했습니다. 다시 시도해주세요");
+        }
+
+        showError();
+
+예시 (매개변수가 있는 함수)
+        function sayHello(name){
+          let msg = `Hello, ${name}`;
+          alert(msg);
+        }
+        let who = prompt("이름을 입력해주세요");
+        sayHello(who);
+
+
+
+★ 매개변수가 있는 함수를 매개변수가 없이 사용해도
+그 함수가 호출됨. (다른언어들과 다른점)
+
+예시코드)
+
+        function sayHello(name){
+          let msg = "Hello";
+          
+          alert(msg);
+        }
+        sayHello();
+
+>> 출력결과 : Hello
+
+
+
+※ if 문을 사용하여 매개변수가 있을때, 없을때를 구분할 수 있음!
+
+        function sayHello(name){
+          let msg = "Hello";
+          if(name) {
+            msg += `, ${name}`;
+          }
+          alert(msg);
+        }
+        sayHello();
+
+
+※ OR 연산자 ( || 연산자 ) 를 사용하여 구분하는 방법도 있음!
+
+예시코드)
+
+        function sayHello(name){
+          let newName = name || "friend";
+          let msg = `Hello, ${newName}`;
+          console.log(msg);
+        }
+        sayHello();
+        sayHello("Jane");
+
+
+
+※ 매개변수가 없는 경우에 디폴트값을 선언해두는것도 가능!
+
+예시코드)
+
+        function sayHello(name = "freind"){
+          let msg = `Hello, ${name}`;
+          console.log(msg);
+        }
+        sayHello();
+        sayHello("Jane");
+
+
+
+★ return 으로 값 반환을 하는 함수
+        function add(num1, num2){
+          return num1 + num2;
+        }
+        const result = add(2,3);
+        console.log(result);
+
+
+
+함수의 장점
+1. 코드의 간결화 (중복을 줄여줌)
+2. 유지 보수가 쉽다
