@@ -1,0 +1,52 @@
+함수 표현식
+
+화살표 함수
+
+
+함수 선언문 vs 함수 표현식
+function sayHello() {
+	console.log("Hello");
+}
+// 위 코드는 함수 선언문
+
+
+let sayHello = function() {
+	console.log("Hello");
+}
+// 위 코드는 함수 표현식
+
+
+자바스크립트는 위에서 아래로 흐르는 인터프리터 언어이다.
+But, 자바스크립트는 실행 전, 초기화 단계에서 코드의 모든 함수 선언문을
+찾은 뒤 생성함. => 그래서 
+
+sayHello();
+
+function sayHello() {
+	console.log("Hello");
+}
+이런 코드도 실행이 가능함. (이러한것을 호이스팅이라 함.)
+
+
+
+
+함수 선언문과 함수 표현식의 차이
+
+함수 선언문 : 어디서든 호출 가능
+함수 표현식 : 코드에 도달하면 생성
+
+
+
+
+화살표함수
+let add = function(num1, num2) {
+	return num1 + num2;
+}
+이것을
+let add = (num1, num2) => {
+	return num1 + num2;
+}
+로 바꿀 수 있음.
+
+
+
