@@ -1,0 +1,139 @@
+객체 접근, 추가, 삭제
+
+const user = {
+	name : "JaeMin",
+	age : 24,
+}
+
+접근
+user.name // "JaeMin"
+user.age // 24
+
+추가
+user.gender = "male";
+
+삭제
+delete user.name;
+
+
+(접근, 추가, 삭제는 대괄호 [ ] 를 사용해서도 접근이 가능함.)
+ex : user["age"] // 24
+
+
+
+
+
+단축 프로퍼티
+예시 코드)
+
+
+const name = "JaeMin";
+const age = 33;
+
+const superman = {
+	name : name,
+	age : age,
+	gender : "male",
+}
+
+
+
+이 코드는 (축약형)
+
+const superman = {
+	name, // name : name
+	age, // age : age
+	gender : "male",
+}
+
+
+
+객체의 프로퍼티 존재 여부 확인방법 => in 을 사용하면 됨.
+예시 코드 (위 superman 코드에서)
+"birthDay" in superman; // false
+"age" in superman; // true
+
+
+
+
+
+for ... in 반복문
+
+for(let key in superman) {
+	console.log(key)
+	console.log(superman[key])
+}
+
+
+
+
+
+
+객체만들기 팁
+        function makeObject(name, age) {
+          return {
+            name : name, // 이 줄은 name, 이라고 쳐도 됨 (위에서 설명한 축약형)
+            age : age, // 이 줄은 age, 라고 쳐도 됨
+            hobby : "football"
+          };
+        }
+        const JaeMin = makeObject("JaeMin", 24);
+        console.log(JaeMin);
+
+이 코드는
+출력 결과가
+{ name : "JaeMin",
+  age : 24,
+  hobby : "football" }
+이라고 나옴!
+
+
+
+객체 존재하는지 안하는지 확인
+
+        function makeObject(name, age) {
+        return {
+          name : name, // 이 줄은 name, 이라고 쳐도 됨 (위에서 설명한 축약형)
+          age : age, // 이 줄은 age, 라고 쳐도 됨
+          hobby : "football"
+        };
+      }
+        const JaeMin = makeObject("JaeMin", 24);
+        console.log(JaeMin);
+
+        console.log("age" in JaeMin); // JaeMin 객체에 age가 존재하는지.
+        console.log("birthday" in JaeMin); // JaeMin 객체에 birthday 가 존재하는지.
+        
+
+
+
+좀 더 실용적인 코드 (Item in 예제)
+
+        function isAdult(user) {
+          if(!("age" in user) || user.age<20){ // ★
+            return false;
+          }
+          return true;
+        }
+        const JaeMin = {
+          name : "JaeMin",
+          age : 30
+        }
+
+        const KoJaem = {
+          name : "KoJaem"
+        }
+        console.log(isAdult(JaeMin));
+        console.log(isAdult(KoJaem));
+
+★ !("age" in user) 코드가 있어야 하는 이유: 
+if문에서 user.age<20인 경우 false를 반환하라고 했는데,
+user.age 자체가 없는 경우 undefined 가 나오므로
+user.age<20 부분에서 false가 나와서 true가 나와버림.
+그래서 매개변수 user에서 age 가 없는경우도 false 를 반환하게끔 만든것.
+
+
+
+
+for... in 예제
+
