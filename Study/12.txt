@@ -1,0 +1,44 @@
+        let boy = {
+          name : "JaeMin",
+          showName: function() {
+            console.log(boy.name);
+          }
+        }
+        boy.showName();
+// 출력결과 : JaeMin
+
+
+
+★ this의 필요성
+
+        let boy = {
+          name : "JaeMin",
+          showName: function() {
+            console.log(boy.name);
+          }
+        }
+        let man = boy; // 객체를 만든게 아니고 JaeMin 이라는 객체가 있는데,
+                       // man 이라고도 부르는것.
+        boy = null;
+        man.showName();
+
+// 에러! (boy.name 이 사라졌기 때문에)
+
+boy.showName() 에서 console.log(this.name); 으로 바꿔주면 됨.
+
+
+
+
+        let boy = {
+          name : "JaeMin",
+          showName: function() {
+            console.log(this.name);
+          }
+        }
+        let man = boy; // 객체를 만든게 아니고 JaeMin 이라는 객체가 있는데,
+                       // man 이라고도 부르는것.
+        boy = null;
+        man.showName();
+
+
+
