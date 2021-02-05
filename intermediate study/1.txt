@@ -1,0 +1,57 @@
+var 와 let 차이
+
+1. var는 let과 다르게 한번 선언된 변수를 다시 선언할 수 있다. (let은 에러)
+
+예제 코드
+var name = "JaeMin";
+console.log(name); // JaeMin
+
+var name = "KoJaem"
+console.log(Jane); // KoJaem
+
+
+
+
+2. var는 선언하기 전에 사용할 수 있다.
+
+console.log(name); // undefined
+var name = "JaeMin";
+
+
+실제 동작에서는
+var name;
+console.log(name); // undefined
+name = "JaeMin";
+
+이런식으로 동작됨. 이것을 ★호이스팅 이라고 함.
+(선언은 호이스팅 되지만, 할당은 호이스팅 되지 않기 때문에 undefined가 나옴.)
+
+
+
+let은 이 상황에서 에러가 나옴
+
+console.log(name); // ReferenceError
+let name = "JaeMin";
+
+이유: (let과 const는 TDZ(Temporal Dead Zone)의 영향을 받기 때문에 오류.)
+
+
+호이스팅 이란? : 스코프 내부 어디서든 변수 선언은 최상위에 선언된 것 처럼 작동되는것
+
+
+
+
+3. var는 함수 스코프, let과 const는 블록 스코프 변수임
+코드로 설명하자면
+
+        const age = 30;
+        if(age>19) {
+          var txt = "성인"; // ★
+        }
+        console.log(txt); // "성인"
+★ 코드에서 txt를 var가 아닌 let이나 const 로 선언할 경우
+에러가 나온다는 뜻
+
+
+
+
