@@ -1,0 +1,66 @@
+보통 같은 성질을 가지고 있는 타입의 객체를 여러개 만들때 생성자 함수를 씀.
+
+생성자 함수는 관례적으로 첫글자를 대문자로 만듦.
+
+function User(name, age) {
+	this.name = name;
+	this.age = age;
+}
+
+let user1 = new User("Mike", 30); // new 연산자를 사용해서 호출
+let user2 = new User("Jane", 22);
+let user3 = new User("Tom", 17);
+
+
+
+
+생성자 함수에는 메소드 추가도 가능함.
+
+        function User(name, age) {
+        	this.name = name;
+        	this.age = age;
+          this.sayName = function() {
+            console.log(this.name);
+          }
+        }
+        let user5 = new User("JaeMin", 24);
+        user5.sayName();
+출력결과 : JaeMin
+
+
+
+
+생성자 함수
+예제 코드
+
+        function Item(title, price) {
+          this.title = title;
+          this.price = price;
+          this.showPrice = function() {
+            console.log(`가격은 ${price}원 입니다.`);
+          }
+        }
+        const item1 = new Item("인형", 3000); // 생성자함수를 사용할때는 new를 사용하는걸 잊지않기!
+        const item2 = new Item("가방", 4000); // new를 까먹으면 그냥 함수 실행이 되므로 반환하는것이 없고
+        const item3 = new Item("지갑", 9000); // 그냥 undefined가 나옴.
+        console.log(item1 ,item2, item3);
+
+        item3.showPrice();
+
+
+
+
+
+
+생성자 함수에서 new를 사용하는것의 의미
+
+        function Item(title, price) {
+	// this = {}; ★
+          	this.title = title;
+          	this.price = price;
+          	this.showPrice = function() {
+           	console.log(`가격은 ${price}원 입니다.`);
+	// return this; ★
+          }
+
+new를 쓰면 코드에는 없지만, 처음과 마지막에 ★코드가 추가됨.
