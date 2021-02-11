@@ -1,0 +1,143 @@
+computed propety란?
+
+        let a = "age";
+
+        const user = {
+          name : "JaeMin",
+          [a] : 30 // [a] 는 변수 a에 할당된 값 (age) 로 인식이 됨.
+                   // 즉, age: 30 과 같은 뜻
+        }
+        console.log(user);
+
+출력결과 : name : "JaeMin", age: 30
+
+이것을 보고 computed property 라고 함.
+
+
+
+        const user = {
+          [1 + 4] : 5,
+          ["안녕"+"하세요"] : "Hello"
+        }
+
+        console.log(user);
+
+출력결과 : 5: 5, 안녕하세요: "Hello"
+
+이런식으로 식으로도 사용 가능함.
+
+
+
+유용한 예시
+        function makeObj(key, val){
+          return {
+            [key] : val
+          }
+        }
+        const obj = makeObj("나이", 24);
+
+        console.log(obj);
+
+출력결과 : 나이: 24
+이런식으로 어떤게 키값으로 올지 모르는 객체를 만들때 유용함.
+
+
+
+
+
+객체메소드
+Object.assign() : 객체 복제
+Object.keys() : 키 배열 반환
+Object.values() : 값 배열 반환
+Object.entries() : 키/값 배열 반환
+Object.fromEntries() : 키/값 배열을 객체로
+
+
+
+
+
+Object.assign() : 객체 복제 예시코드
+
+        const user = {
+          name: "JaeMin",
+          age: 24,
+        };
+
+        const user2 = Object.assign({},user);
+
+        user2.name = "KoJaem";
+        console.log(user);
+        console.log(user2);
+
+출력결과 : name: "JaeMin", age : 24
+	 name: "KoJaem", age: 24
+
+Object.assign 으로 복사 안하면 user의 Name도 JaeMin으로 바뀜 (얕은복사 생각하면 될듯)
+
+
+
+
+
+Object.keys() : 키 배열 반환 예시코드
+
+        const user = {
+          name: "JaeMin",
+          age: 24,
+        };
+
+        const result = Object.keys(user);
+
+        console.log(result);
+
+출력결과 : "name", "age"
+
+
+
+Object.values() : 값 배열 반환 예시코드
+
+        const user = {
+          name: "JaeMin",
+          age: 24,
+        };
+
+        const result = Object.values(user);
+
+        console.log(result);
+
+출력결과 : "JaeMin", 24
+
+
+
+Object.entries() : 키/값 배열 반환 예시코드
+
+        const user = {
+          name: "JaeMin",
+          age: 24,
+        };
+
+        const result = Object.entries(user);
+
+        console.log(result);
+
+출력결과 : (2) [Array(2), Array(2)]
+	0: (2) ["name", "JaeMin"]
+	1: (2) ["age", 24]
+	length: 2
+	__proto__: Array(0)
+	....
+
+
+
+
+Object.fromEntries() : 키/값 배열을 객체로 예시코드
+
+        let arr = [
+          ["mon", "월"], // 앞이 key, 뒤가 value가 됨.
+          ["tue", "화"]
+        ]
+
+        const result = Object.fromEntries(arr);
+
+        console.log(result);
+
+출력결과 : mon: "월", tue: "화"
