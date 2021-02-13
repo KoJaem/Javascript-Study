@@ -1,0 +1,164 @@
+        const obj = {
+          1: "1입니다",
+          false: "거짓"
+        }
+
+        console.log(Object.keys(obj)); // ["1", "false"]
+
+        console.log(obj["1"]);
+        console.log(obj["false"]);
+
+출력결과 : "1", "false"
+	  1입니다
+	  거짓
+
+
+
+
+
+심볼(Symbol) 이란? : 유일한 식별자를 만들 때 사용함.
+
+        const a = Symbol(); // new를 붙이지 않음!
+        const b = Symbol();
+
+        console.log(a===b); // 자료형, 내용 둘다 일치해야 하는 연산
+        console.log(a==b); // 자료형은 달라도 내용이 일치해야 하는 연산
+출력결과 : false
+	 false
+
+
+
+★심볼은 유일성을 보장함. 만들때 설명을 쓸 수 있는데, 같은 설명을 쓰더라도 다른 심볼로 인식.
+
+        const id = Symbol("id");
+        const id2 = Symbol("id");
+
+        console.log(id);
+        console.log(id2);
+        console.log(id===id2);
+        console.log(id==id2);
+출력결과 : Symbol(id)
+	 Symbol(id)
+	 false
+	 false
+
+
+
+
+
+객체를 만들때 심볼을 사용하면 심볼로 만든 key를 가진 객체가 만들어짐.
+        const id = Symbol("id");
+        const user = {
+          name : "JaeMin",
+          age : 24,
+          [id] : "myid"
+        }
+        console.log(user);
+출력결과 : name: JaeMin, age: 24, Symbol(id) : "myid"
+
+
+
+
+
+Symbol.for() : 전역심볼 => 이름이 같으면 같은 객체로 취급하는 심볼
+● 하나의 심볼만 보장받을 수 있음
+● 없으면 만들고, 있으면 가져오기 때문
+● Symbol 함수는 매번 다른 Symbol 값을 생성하지만,
+● Symbol.for 메소드는 하나를 생성한 뒤 키를 통해 같은 Symbol을 공유
+
+        const id1 = Symbol.for("id");
+        const id2 = Symbol.for("id");
+
+        console.log(id1===id2);
+출력결과 : true
+
+
+★심볼의 이름을 얻고싶다면
+Symbol.keyFor(id1) // "id1"
+을 입력하면 됨.
+단, 전역심볼이 아니라면 keyFor 는 사용할 수 없음!
+
+
+
+대신, description 으로 알 수 있음.
+const id = Symbol("id 입니다.");
+id.description; // "id 입니다."
+
+
+
+
+숨겨진 Symbol key 보는법
+        const id = Symbol("JaeMin's id");
+
+        const user = {
+          name : "Mike",
+          age : 30,
+          [id] : "myid"
+        }
+        console.log(Object.getOwnPropertySymbols(user));
+
+출력결과 : Symbol(JaeMin's id);
+
+
+
+
+
+
+
+Object.keys(user)는 Symbol을 보여주진 않지만,
+Reflect.ownKeys(user); 를 사용하면 Symbol까지 모두 보여줌.
+
+        const id = Symbol("JaeMin's id");
+
+        const user = {
+          name : "Mike",
+          age : 30,
+          [id] : "myid"
+        }
+        console.log(Object.getOwnPropertySymbols(user));
+        console.log(Object.keys(user));
+        console.log(Reflect.ownKeys(user));
+
+출력결과 : Symbol(JaeMin's id);
+	 "name", "age"
+	 "name", "age", Symbol(JaeMin's id);
+
+
+
+
+
+
+
+
+        // 다른 개발자가 만들어 놓은 객체를 확인한다고 쳤을때
+        const user = {
+          name: "JaeMin",
+          age : 24,
+        }
+
+        // 내가 작업
+        //user.showName = function(){}; // 이 코드로 하면 아래 객체확인할때
+                                        // His showName is function() {} 이런게 나와버림.
+        const showName = Symbol('show name');
+        user[showName] = function() {
+          console.log(this.name);
+        }
+
+        user[showName](); // ●출력결과 1번째꺼 JaeMin
+
+        // 사용자가 접속하면 보는 메세지
+        for(let key in user) {
+          console.log(`His ${key} is ${user[key]}.`);
+        }
+
+출력결과 : JaeMin
+	 His name is JaeMin.
+	 His age is 24.
+
+
+
+
+
+
+
+
