@@ -1,0 +1,173 @@
+toString() 메소드
+10진수 -> 2진수/16진수
+
+예시 코드
+        let num = 10;
+        console.log(num.toString()); // "10"
+        console.log(num.toString(2)); // "1010"
+
+        let num2 = 255;
+        console.log(num2.toString(16)); // "ff"
+
+괄호안에 숫자를 넣으면 그 숫자의 진법으로 표현함.
+
+
+Math 객체
+Math.PI; // 3.141592653589793
+Math.ceil() : 올림
+Math.floor() : 내림
+Math.round() : 반올림
+
+
+예제 코드
+        let num1 = 5.1;
+        let num2 = 5.7;
+        console.log(Math.PI);
+        console.log(Math.ceil(num1));
+        console.log(Math.ceil(num2));
+        console.log(Math.floor(num1));
+        console.log(Math.floor(num2));
+        console.log(Math.round(num1));
+        console.log(Math.round(num2));
+
+
+출력결과 : 3.141592653589793
+	 6
+	 6
+	 5
+	 5
+	 5
+	 6
+
+
+★★★★★
+만약에 소수점 자릿수를 셋째자리에서 반올림하여 둘째자리까지 표현하고 싶은 상황이 오면
+1. 100을 곱한다
+2. 반올림을 한다
+3. 100으로 나눈다 를 하면 된다.
+
+예제 코드
+// userRate를 셋째자리에서 반올림하여 둘째자리까지 표현하는 코드
+        let userRate = 30.1234;
+
+        console.log((userRate*100)); // 3012.34
+
+        console.log(Math.round(userRate*100)); // 3012
+
+        console.log(Math.round(userRate*100)/100); // 30.12
+
+
+출력결과 : 3012.34
+	 3012
+	 30.12
+
+★★★★★
+
+
+
+★★★★★★★★★★★★★★★
+더 간단한 방법은 toFixed() 메소드를 사용하면 된다
+예제코드
+        let userRate = 30.1234;
+        console.log(userRate.toFixed(2)); // 30.12
+        console.log(userRate.toFixed(0)); // 정수
+        console.log(userRate.toFixed(6)); // 소수부분보다 많으면 0
+
+출력결과 : 30.12 
+	 30
+	 30.123400
+
+★주의사항 : toFixed() 는 문자열을 반환함.
+그래서 반환받은 후 작업을 할거라면
+Number로 변환 시켜줘야함
+예시 코드
+Number(userRate.toFixed(2)); // 3012
+
+★★★★★★★★★★★★★★★
+
+
+isNaN() : NaN인지 아닌지 판단해줌 (NaN이란 Not a Number를 뜻함.
+			        즉, 숫자값이지만 (컴퓨터로는) 표현할 수 없는 숫자값)
+
+        let x = Number('x'); // NaN
+
+        console.log(isNaN(x)); // true
+        console.log(isNaN(3)); // false
+
+출력결과 : true
+	 false
+
+
+
+
+parseInt() : 문자를 숫자로 바꿔줌 (Number와 다른점은 문자가 섞여있으면 읽을 수 있는곳까지 숫자를 반환함.)
+예제 코드
+        let margin = "10px";
+        console.log(parseInt(margin)); // 10
+        console.log(Number(margin)); // NaN
+        let redColor = "f3";
+        console.log(parseInt(redColor)); // parseInt도 처음부분에 숫자가 안나오면 NaN 반환
+        console.log(parseInt(redColor)); // NaN
+출력결과 : 10
+	 NaN
+	 NaN
+	 NaN
+
+
+
+parseInt() 활용 (매개변수 두개 사용) / parseInt("바꿀 문자", 몇진수로 할지);
+예제코드
+        let redColor = "f3";
+        parseInt(redColor); // NaN
+        console.log(parseInt(redColor,16)); // 243
+        console.log(parseInt("11",2)); // 3
+
+출력결과 : 243
+	 3
+
+
+
+
+parseFloat() : parseInt와 똑같이 동작하지만, 부동소수점을 반환함.
+
+        let padding = "18.5%";
+        console.log(parseInt(padding)); // 18 , parseInt는 소수점은 무시하고 정수만 반환함.
+        console.log(parseFloat(padding)); // 18.5
+
+출력결과 : 18
+	 18.5
+
+
+
+
+Math.random() : 0 이상 1 미만의 랜덤한 숫자를 반환함.
+만약, 1 ~ 100 사이 임의의 숫자를 뽑고 싶다면?
+Math.floor(Math.random()*100)+1
+
+
+
+
+
+Math.max() : 괄호안에 인수들 중 최댓값을 구함
+Math.min() : 괄호안에 인수들 중 최솟값을 구함
+Math.abs() : 절대값을 구함
+Math.pow(n,m) : n의 m제곱 값을 구함.
+Math.sqrt() : 제곱근을 구함.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
