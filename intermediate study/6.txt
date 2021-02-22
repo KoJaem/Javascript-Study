@@ -1,0 +1,233 @@
+문자열 여러줄을 표현할때 '(") 과 ` 차이
+
+        let desc1 = `오늘은 맑고 화창한
+날씨가 계속 되겠습니다.
+내일은 비소식이 있습니다.`;
+
+        let desc2 = '오늘은 맑고 화창한\n날씨가 계속 되겠습니다.';
+        // `은 여러줄로 표현하면 에러가 남!`
+
+
+
+
+문자열 메소드는 배열과 비슷하다고 함.
+
+length : 문자열 길이
+
+        let desc = '안녕하세요.';
+        console.log(desc.length);
+출력결과 : 6
+
+
+특정 위치에 접근
+
+let desc = '안녕하세요.';
+출력결과 : 하
+
+
+★★★★★
+단, 배열과 다르게 한글자만 바꾸는것은 허용되지 않음!
+        let desc = '안녕하세요.';
+        desc[4]='용';
+        console.log(desc);
+출력결과 : 안녕하세요.
+
+
+
+
+영어인경우, 모든 문자를 대문자로, 소문자로 바꾸기
+
+        let desc = "Hi guys. Nice to meet you.";
+        console.log(desc);
+
+        desc = desc.toUpperCase();
+        console.log(desc);
+
+        desc = desc.toLowerCase();
+        console.log(desc);
+출력결과 : Hi guys. Nice to meet you.
+	 HI GUYS. NICE TO MEET YOU.
+	 hi guys. nice to meet you.
+
+
+
+
+
+문자를 입력받아 몇번째 위치하는지 알려줌.
+        let desc = "Hi guys. Nice to meet you.";
+        console.log(desc.indexOf('to')); // 14
+출력결과 : 14
+
+찾는결과가 없으면 -1 을 반환함.
+주의할점 : 포함된 문자가 여러개라도 첫번째 위치만 반환함.
+
+★★★★★★★★★
+indexOf를 if문에서 사용할때 주의할점
+        let desc = "Hi guys. Nice to meet you.";
+        if(desc.indexOf('Hi')) {
+          console.log('Hi가 포함된 문장입니다.');
+        }
+출력결과 : (없음)
+
+이유: Hi로 시작하는 문장의 인덱스는 0인데,
+if문에서 0은 false를 뜻하기 때문에 if문이 실행되지 않음.
+
+이러한 코드를 짤때는
+
+        let desc = "Hi guys. Nice to meet you.";
+        if(desc.indexOf('Hi') > -1) {
+          console.log('Hi가 포함된 문장입니다.');
+        }
+출력결과 : Hi가 포함된 문장입니다.
+
+이런식으로 -1보다 크다로 짜야함.
+★★★★★★★★★
+
+
+
+특정범위의 문자열만 뽑기
+str.slice(n,m) : n은 시작점, m은 없으면 문자열 끝까지, 양수면 그 숫자까지(포함하지 않음), 예를들어 5를 적으면 4까지 반환
+					      음수면 끝에서부터 셈
+
+        let desc = "abcdefg";
+        console.log(desc.slice(2));
+        console.log(desc.slice(0,5));
+        console.log(desc.slice(2,-2));
+출력결과 : cdefg
+	 abcde
+	 cde
+
+
+
+str.substring(n,m) : n과 m 사이 문자열 반환 (n과 m을 바꿔도 동작함), 음수는 0으로 인식
+
+        let desc = "abcdefg";
+        console.log(desc.substring(2,5));
+        console.log(desc.substring(5,2));
+출력결과 : cde
+	 cde
+
+
+
+
+
+str.substr(n,m) : n부터 시작, m개를 가져옴
+
+
+        let desc = "abcdefg";
+        console.log(desc.substr(2,4));
+        console.log(desc.substr(-4,2));
+출력결과 : cdef
+	 de
+
+
+
+
+str.trim() : 앞뒤 공백 제거
+        let desc = " coding      ";
+        console.log(desc.trim());
+
+
+
+
+str.repeat(n) : n번 반복
+
+        let hello = "hello!";
+        console.log(hello.repeat(3));
+출력결과 : hello!hello!hello!
+
+
+
+
+아스키코드 가져오기
+        let char = 'abc';
+        console.log(char.codePointAt(0));
+출력결과 : 97
+
+
+
+
+
+실용적인 예제
+
+어떤 책의 목차가 있는데 숫자는빼고 글자만 찍게 하는 코드가 있다고 치면
+
+        let list = [
+          "01. 들어가며",
+          "02. JS의 역사",
+          "03. 자료형",
+          "04. 함수",
+          "05. 배열",
+        ]
+        let newList = [];
+        for(let i = 0; i<list.length;i++){
+          newList.push(list[i].slice(4));
+        }
+
+        console.log(newList);
+출력결과 : 들어가며
+	 JS의 역사
+	 자료형
+	 함수
+	 배열
+
+
+
+
+금칙어가 있는 문자열은 금칙어가 있습니다라고 출력하는 코드
+
+        // 금칙어 : 콜라
+        function checkCola(str) {
+          if(str.indexOf('콜라')>-1) {
+            console.log('금칙어가 있습니다.');
+          }
+          else {
+            console.log(str);
+          }
+        }
+        checkCola("사이다 먹고싶다.");
+        checkCola("무슨 소리야, 콜라가 최고지");
+        checkCola("사이다");
+        checkCola("고민되는데.. 난 그래도 콜라");
+출력결과 : 사이다 먹고싶다.
+	 금칙어가 있습니다.
+	 사이다
+	 금칙어가 있습니다.
+
+
+
+
+includes : 문자가 있으면 true, 없으면 false 반환
+
+
+
+        function checkCola(str) {
+          if(str.includes('콜라')) {
+            console.log('금칙어가 있습니다.');
+          }
+          else {
+            console.log(str);
+          }
+        }
+        checkCola("사이다 먹고싶다.");
+        checkCola("무슨 소리야, 콜라가 최고지");
+        checkCola("사이다");
+        checkCola("고민되는데.. 난 그래도 콜라");
+
+출력결과 : 사이다 먹고싶다.
+	 금칙어가 있습니다.
+	 사이다
+	 금칙어가 있습니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
